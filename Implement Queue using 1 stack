@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <iostream>
+#include <stack>
+using namespace std;
+
+class Queue{
+    public:
+    int n;
+    stack<int>s1;
+    Queue(int n):n(n){}
+    void enqueue(int data){
+        if(s1.empty()){
+            s1.push(data);
+            return;
+        }
+        else{
+            int x = s1.top();
+            s1.pop();
+            enqueue(data);
+            s1.push(x);
+        }
+    }
+    int dequeue(){
+        int x=s1.top();
+        s1.pop();
+        return x;
+    }
+};
+
+int main() {
+	Queue q1(5);
+	q1.enqueue(2);
+	q1.enqueue(3);
+	q1.enqueue(4);
+	q1.enqueue(5);
+	cout<<q1.dequeue()<<endl;
+	cout<<q1.dequeue()<<endl;
+	q1.enqueue(6);
+	cout<<q1.dequeue()<<endl;
+	
+	return 0;
+}
